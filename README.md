@@ -22,13 +22,22 @@
 ![image](https://user-images.githubusercontent.com/93895412/229009093-47faeb7a-12d8-4982-b3da-8152de87d6b4.png)
 
 
-# Trang chỉnh sửa thông tin cá nhân
+## Trang chỉnh sửa thông tin cá nhân
 ![image](https://user-images.githubusercontent.com/93895412/228771229-35542fce-a467-4035-8f98-1e9751fdf1c4.png)
 
 
+### Các chức năng chính trong project
+- Đăng ký
+- Đăng nhập
+- Đăng xuất
+- Tìm kiếm, lọc theo chữ cái
+- Chỉnh sửa thông tin cá nhân(username, email)
+- Xoá user
+
+
 ### Phân quyền trong project
-User có quyền xem và tìm kiếm trong danh sách, chỉnh sửa thông tin cá nhân
-Admin có quyền xem và tìm kiếm trong danh sách, chỉnh sửa thông tin cá nhân, xoá các User trong danh sách, khi Admin xoá chính mình sẽ tự động logout
+- User có quyền xem và tìm kiếm trong danh sách, chỉnh sửa thông tin cá nhân
+- Admin có quyền xem và tìm kiếm trong danh sách, chỉnh sửa thông tin cá nhân, xoá các User trong danh sách, khi Admin xoá chính mình sẽ tự động logout
 
 ### Các công nghệ sử dụng trong Project
 - Redux Persist
