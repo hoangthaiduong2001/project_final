@@ -1,7 +1,5 @@
 import icons from "../utils/icons";
 
-
-
 const { MdOutlineEditNote,  MdOutlineFormatListBulleted, TbLogout} = icons;
 export const Menu = [
     {

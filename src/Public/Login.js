@@ -6,12 +6,23 @@ import * as actions from "../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const { FaUserCircle, GiArchiveRegister, AiFillEye, AiFillEyeInvisible, RiLockFill, MdMail, RiUser2Fill, ImUser } = icons;
+const {
+  FaUserCircle,
+  GiArchiveRegister,
+  AiFillEye,
+  AiFillEyeInvisible,
+  RiLockFill,
+  MdMail,
+  RiUser2Fill,
+  ImUser,
+  FcGoogle,
+  BsFacebook,
+} = icons;
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isRegister, setIsRegister] = useState(false);
-  const [isShowPassword, setIsShowPassword] = useState(true) 
+  const [isShowPassword, setIsShowPassword] = useState(true);
   const [invalidFields, setInvalidFields] = useState([]);
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [playload, setPlayload] = useState({
@@ -24,11 +35,19 @@ const Login = () => {
     isLoggedIn && navigate("/");
   }, [isLoggedIn]);
 
-  const handleEnter =(event)=> {
+  const handleEnter = (event) => {
     if (event.keyCode === 13) {
-      dispatch(actions.loginSuccses(playload))
+      dispatch(actions.loginSuccses(playload));
     }
-}
+  };
+  const handleLoginGoogle = async () => {
+    window.open("http://localhost:8000/api/auth/google", "_self");
+  };
+
+  const handleLoginFacebook = async (type) => {
+    window.open("http://localhost:8000/api/auth/facebook", "_self");  
+  };
+
   const handleSubmit = async () => {
     let payloadFinal = isRegister
       ? playload
@@ -38,17 +57,17 @@ const Login = () => {
         };
     let invalids = validate(payloadFinal);
     if (invalids === 0) {
-      if (isRegister) {      
-          navigate("/login");
-          dispatch(actions.register(playload));
-          setIsRegister(false);
-          setPlayload({
-            username: "",
-            email: "",
-            password: "",
-          });
+      if (isRegister) {
+        navigate("/login");
+        dispatch(actions.register(playload));
+        setIsRegister(false);
+        setPlayload({
+          username: "",
+          email: "",
+          password: "",
+        });
       } else {
-        dispatch(actions.loginSuccses(playload))
+        dispatch(actions.loginSuccses(playload));
       }
     }
   };
@@ -103,7 +122,9 @@ const Login = () => {
                 {isRegister ? "Create your account" : "Sign in to your account"}
               </h1>
               <form className="space-y-4 md:space-y-6">
-                <span><ImUser className="absolute right-[930px] cursor-pointer items-center h-[100px] justify-center flex"/></span>
+                <span>
+                  <ImUser className="absolute right-[930px] cursor-pointer items-center h-[100px] justify-center flex" />
+                </span>
                 <Input
                   setInvalidFields={setInvalidFields}
                   invalidFields={invalidFields}
@@ -112,11 +133,13 @@ const Login = () => {
                   type={"username"}
                   value={playload.username}
                   setValue={setPlayload}
-                  onKeyDown={(e) => handleEnter(e) }
+                  onKeyDown={(e) => handleEnter(e)}
                 />
-                {isRegister && 
-                  <>
-                    <span><MdMail className="absolute right-[930px] bottom-[280px] cursor-pointer items-center h-[100px] justify-center flex"/></span>
+                {isRegister && (
+                  <div>
+                    <span>
+                      <MdMail className="absolute right-[930px] bottom-[300px] cursor-pointer items-center h-[100px] justify-center flex" />
+                    </span>
                     <Input
                       setInvalidFields={setInvalidFields}
                       invalidFields={invalidFields}
@@ -126,11 +149,13 @@ const Login = () => {
                       value={playload.email}
                       setValue={setPlayload}
                     />
-                  </>
-                }
-                <div className="flex w-full gap-3">  
+                  </div>
+                )}
+                <div className="flex w-full gap-3">
                   <div>
-                  <span><RiLockFill className="absolute right-[930px] cursor-pointer items-center h-[100px] justify-center flex"/></span>
+                    <span>
+                      <RiLockFill className="absolute right-[930px] cursor-pointer items-center h-[100px] justify-center flex" />
+                    </span>
                     <Input
                       setInvalidFields={setInvalidFields}
                       invalidFields={invalidFields}
@@ -139,10 +164,18 @@ const Login = () => {
                       type={isShowPassword ? "password" : "text"}
                       value={playload.password}
                       setValue={setPlayload}
-                      onKeyDown={(e) => handleEnter(e) }
+                      onKeyDown={(e) => handleEnter(e)}
                     />
                   </div>
-                  <span className="absolute left-[930px] cursor-pointer items-center h-[100px] justify-center flex">{isShowPassword ? <AiFillEye onClick={()=>setIsShowPassword(false)}/> : <AiFillEyeInvisible onClick={()=>setIsShowPassword(true)}/>}</span>
+                  <span className="absolute left-[930px] cursor-pointer items-center h-[100px] justify-center flex">
+                    {isShowPassword ? (
+                      <AiFillEye onClick={() => setIsShowPassword(false)} />
+                    ) : (
+                      <AiFillEyeInvisible
+                        onClick={() => setIsShowPassword(true)}
+                      />
+                    )}
+                  </span>
                 </div>
                 <button
                   type="button"
@@ -151,37 +184,43 @@ const Login = () => {
                 >
                   {isRegister ? "Sign up" : "Sign in"}
                 </button>
-                <p className="text-sm font-light text-gray-500">
-                  {isRegister ? "Go to back" : "Don’t have an account?"}
-                  <span className="font-medium text-primary-600 hover:underline cursor-pointer">
-                    {isRegister ? (
-                      <span
-                        onClick={() => {
-                          setIsRegister(false);
-                          setPlayload({
-                            username: "",
-                            email: "",
-                            password: "",
-                          });
-                        }}
-                      >
-                        <Link to={`/login`}>Sign in</Link>
-                      </span>
-                    ) : (
-                      <span
-                        onClick={() => {
-                          setIsRegister(true);
-                          setPlayload({
-                            username: "",
-                            email: "",
-                            password: "",
-                          });
-                        }}
-                      >
-                        <Link to={`/register`}>Sign up</Link>
-                      </span>
-                    )}
+                <p className="text-sm font-light text-gray-500 flex flex-col gap-3">
+                  <span className="flex gap-2 items-center">
+                    Sign in with <FcGoogle size={25} className="cursor-pointer" onClick={handleLoginGoogle}/>
+                    <BsFacebook size={25} className="cursor-pointer" color="blue" onClick={handleLoginFacebook}/>
                   </span>
+                  <b className="flex">
+                    {isRegister ? "Go to back" : "Don’t have an account?"}
+                    <span className="font-medium text-primary-600 hover:underline cursor-pointer">
+                      {isRegister ? (
+                        <span
+                          onClick={() => {
+                            setIsRegister(false);
+                            setPlayload({
+                              username: "",
+                              email: "",
+                              password: "",
+                            });
+                          }}
+                        >
+                          <Link to={`/login`}>Sign in</Link>
+                        </span>
+                      ) : (
+                        <span
+                          onClick={() => {
+                            setIsRegister(true);
+                            setPlayload({
+                              username: "",
+                              email: "",
+                              password: "",
+                            });
+                          }}
+                        >
+                          <Link to={`/register`}>Sign up</Link>
+                        </span>
+                      )}
+                    </span>
+                  </b>
                 </p>
               </form>
             </div>

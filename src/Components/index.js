@@ -4,4 +4,6 @@ export { default as Header} from './Header'
 export { default as Contain} from './Contain'
 export { default as UpdateUser} from './UpdateUser'
 export { default as Menu} from './Menu'
-export { default as Test} from './Test'
+export { default as LoginSuccess} from './LoginSuccess'
+
+

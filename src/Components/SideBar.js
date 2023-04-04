@@ -22,7 +22,7 @@ const SideBar = ({currentData}) => {
     try {
       const response = await axiosConfig({
           method: 'post',
-          url: `/v1/auth/logout`,
+          url: `/api/auth/logout`,
           headers: {
               token:`Bearer ${token}`
           }

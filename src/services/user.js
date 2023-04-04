@@ -5,7 +5,7 @@ export const apiGetUserById = (token) => new Promise(async(resolve, reject) => {
         const id = localStorage.getItem('persist:auth') && JSON.parse(localStorage.getItem('persist:auth'))?.userId?.slice(1, -1)
         const response = await axios({
             method: 'get',
-            url: `/v1/user/${id}`,
+            url: `/api/user/${id}`,
             headers: {
                 token: token ? `Bearer ${token}` : null
             }
@@ -20,7 +20,7 @@ export const apiAllUser = (token) => new Promise(async(resolve, reject) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `/v1/user/`,
+            url: `/api/user/`,
             headers: {
                 token: `Bearer ${token}`
             }
@@ -36,7 +36,7 @@ export const apiUpdateUser = (token, payload) => new Promise(async(resolve, reje
         const id = localStorage.getItem('persist:auth') && JSON.parse(localStorage.getItem('persist:auth'))?.userId?.slice(1, -1)
         const response = await axios({
             method: 'put',
-            url: `/v1/user/${id}/update`,
+            url: `/api/user/${id}/update`,
             data: payload,
             headers: {
                 token: token ? `Bearer ${token}` : null
@@ -52,7 +52,7 @@ export const apiDeleteUser = (id, token) => new Promise(async(resolve, reject) =
     try {
         const response = await axios({
             method: 'delete',
-            url: `/v1/user/${id}/delete`,
+            url: `/api/user/${id}/delete`,
             headers: {
                 token: token ? `Bearer ${token}` : null
             }

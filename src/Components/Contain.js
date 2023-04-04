@@ -28,7 +28,7 @@ const App = () => {
     try {
       const response = await axiosConfig({
           method: 'post',
-          url: `/v1/auth/logout`,
+          url: `/api/auth/logout`,
           headers: {
               token:`Bearer ${token}`
           }
@@ -64,17 +64,21 @@ const App = () => {
     action: (
       <span className="flex cursor-pointer gap-2">
         {currentData.isAdmin ? (
-          <div className="flex bg-blue-500  gap-1 items-center p-1 rounded-md text-white hover:bg-red-500">
-            <span>Delete</span>
-            <RiDeleteBin6Line
-              size={20}
-              title="Delete"
-              onClick={() => {if(list.isAdmin){
+          <div 
+            className="flex bg-blue-500  gap-1 items-center p-1 rounded-md text-white hover:bg-red-500"
+            onClick={() => {if(window.confirm('Are you sure you wish to delete this user?')){
+              if(list.isAdmin){
                 handleDeleteuser(list._id)
                 handleLogout()
               }else{
                 handleDeleteuser(list._id)
-              }}}
+              }
+            }}}
+          >
+            <span>Delete</span>
+            <RiDeleteBin6Line
+              size={20}
+              title="Delete"
             />
           </div>
         ) : (
@@ -237,6 +241,7 @@ const App = () => {
         width: "10%",
     },
   ];
+  <h2>hello</h2>
   return <Table columns={columns} dataSource={data} className="h-full"/>;
 };
 export default App;

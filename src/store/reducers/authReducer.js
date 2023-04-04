@@ -5,8 +5,7 @@ const initState = {
     isLoggedIn: false,
     token: "",
     userId: "",
-    data: {},
-    msg: ""
+    data: {}
 }
 
 const authReducer = (state = initState, action) => {
@@ -26,7 +25,7 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 isLoanding: true
         }
-        case actionType.LOGIN_SUCCSESS:
+        case actionType.LOGIN_SUCCESS:
             return{
                 ...state,
                 isLoanding: false,
@@ -39,6 +38,20 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 isLoggedIn: false,
                 msg: action.data
+        }
+        case actionType.LOGIN_GOOGLE:
+            return{
+                ...state,
+                isLoggedIn: true,
+                token: action.token,
+                userId: action.userId
+        }
+        case actionType.LOGIN_FACEBOOK:
+            return{
+                ...state,
+                isLoggedIn: true,
+                token: action.token,
+                userId: action.userId
         }
         case actionType.LOGOUT:
             return{

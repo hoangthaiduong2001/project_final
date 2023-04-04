@@ -3,7 +3,9 @@ const path = {
     LOGIN: '/login',
     REGISTER: '/register',
     CONTENT: '',
-    UPDATE_USER: '/update'
+    UPDATE_USER: '/update',
+    LOGIN_SUCCESS: '/login-success/:userId',
+    LOGIN_FACEBOOK: '/login-facebook/:userId'
 }
 
 export default path
