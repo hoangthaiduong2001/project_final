@@ -2,7 +2,13 @@
 
 
 ## Trang đăng nhập
-![image](https://user-images.githubusercontent.com/93895412/228770403-a1744c83-42c7-4980-b06e-38829a64959b.png)
+![image](https://user-images.githubusercontent.com/93895412/229686807-04fd7c68-a10c-4701-808c-63f5bb45fad8.png)
+
+## Đăng nhập với tài khoản Google
+![image](https://user-images.githubusercontent.com/93895412/229688686-a74d1b7d-3dce-4ac2-9588-6c530780c989.png)
+
+
+## Đăng nhập với tài khoản Facebook
 
 
 ## Trang đăng ký
@@ -46,5 +52,6 @@
 - Momentjs
 - React icons
 - Sweetalert2
+- Passport
 
 
